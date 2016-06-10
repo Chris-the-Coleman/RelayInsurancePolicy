@@ -53,7 +53,8 @@ namespace RelayInsurancePolicy
             drivers[driverNumber].Occupation = occupation;
             drivers[driverNumber].DriverAge = ageCalculator(age);
             drivers[driverNumber].NumberOfClaims = claims;
-            dateOfBirths[driverNumber] = age;
+            ages.Remove(ages[driverNumber]);
+            ages.Add(ageCalculator(age));
             drivers[driverNumber].claimDates.Clear();
         }//Changes driver details and clears claim list
 
