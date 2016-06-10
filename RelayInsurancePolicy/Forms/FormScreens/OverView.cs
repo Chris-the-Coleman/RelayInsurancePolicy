@@ -220,7 +220,7 @@ namespace RelayInsurancePolicy
             if (Policy.drivers.Count == 5)
             {
                 invisibility(driverFive, Amend5, Delete5);
-                DriversUpdate(driverFour, 3, true, false);
+                DriversUpdate(driverFour, 3, true, true);
             }
             else
             {
