@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.25302.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayInsurancePolicy", "RelayInsurancePolicy\RelayInsurancePolicy.csproj", "{7C067326-F9E6-4310-A6A0-223662264F05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayInsurancePolicy.Tests", "RelayInsurancePolicy.Tests\RelayInsurancePolicy.Tests.csproj", "{78E323AE-9412-4433-8471-FE7333905AF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C067326-F9E6-4310-A6A0-223662264F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C067326-F9E6-4310-A6A0-223662264F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C067326-F9E6-4310-A6A0-223662264F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C067326-F9E6-4310-A6A0-223662264F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78E323AE-9412-4433-8471-FE7333905AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78E323AE-9412-4433-8471-FE7333905AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78E323AE-9412-4433-8471-FE7333905AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78E323AE-9412-4433-8471-FE7333905AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
