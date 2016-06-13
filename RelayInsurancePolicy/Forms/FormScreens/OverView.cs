@@ -87,28 +87,34 @@ namespace RelayInsurancePolicy
                     Policy.ages.Remove(Policy.ages[driverNumber]);
                 }
             }
-
-            text.AppendText("Driver ");
-            text.AppendText(Convert.ToString(driverNumber + 1));
-            text.AppendText("\n");
-            text.AppendText(Policy.drivers[driverNumber].DriverName);
-            text.AppendText("\n");
-            text.AppendText("Occupation: ");
-            text.AppendText(Policy.drivers[driverNumber].Occupation);
-            text.AppendText("\n");
-            text.AppendText("Age: ");
-            text.AppendText(Convert.ToString(Policy.drivers[driverNumber].DriverAge));
-            text.AppendText("\n");
-            text.AppendText("No. of claims: ");
-            text.AppendText(Convert.ToString(Policy.drivers[driverNumber].NumberOfClaims));
-            text.AppendText("\n");
-            text.AppendText("Claim dates: ");
-
-            foreach (DateTime claim in Policy.drivers[driverNumber].claimDates)
+           try
             {
-
-                text.AppendText(Convert.ToString(claim.Date.ToString("d")));
+                text.AppendText("Driver ");
+                text.AppendText(Convert.ToString(driverNumber + 1));
                 text.AppendText("\n");
+                text.AppendText(Policy.drivers[driverNumber].DriverName);
+                text.AppendText("\n");
+                text.AppendText("Occupation: ");
+                text.AppendText(Policy.drivers[driverNumber].Occupation);
+                text.AppendText("\n");
+                text.AppendText("Age: ");
+                text.AppendText(Convert.ToString(Policy.drivers[driverNumber].DriverAge));
+                text.AppendText("\n");
+                text.AppendText("No. of claims: ");
+                text.AppendText(Convert.ToString(Policy.drivers[driverNumber].NumberOfClaims));
+                text.AppendText("\n");
+                text.AppendText("Claim dates: ");
+
+                foreach (DateTime claim in Policy.drivers[driverNumber].claimDates)
+                {
+
+                    text.AppendText(Convert.ToString(claim.Date.ToString("d")));
+                    text.AppendText("\n");
+                }
+            }
+            catch
+            {
+                
             }
         }    
            

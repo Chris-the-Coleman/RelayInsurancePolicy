@@ -40,7 +40,9 @@ namespace RelayInsurancePolicy
                 policyBox.AppendText(" drivers shall cost:");
                 policyBox.AppendText("\n");
                 policyBox.AppendText("£");
-                Double premium = Policy.CalculatePremium(Policy.ages.Min());
+                MessageBox.Show(Convert.ToString(Policy.ages.Min()));
+                Double premium = CalculatePremium();
+                
                 policyBox.AppendText(Convert.ToString(premium)); 
             }
             else
@@ -69,6 +71,7 @@ namespace RelayInsurancePolicy
         public Boolean Youngest()
         {
             if (Policy.ages.Min() < 21) return true;
+                
             else return false;
         }
 
@@ -141,7 +144,40 @@ namespace RelayInsurancePolicy
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
             Application.Exit();
         }
+
+        public static Double CalculatePremium()
+        {
+            foreach (Driver driver in Policy.drivers)
+            {
+                if (driver.Occupation == "Accountant")
+                {
+                    Policy.premium -= Policy.percantageCalculated(10);
+
+                }
+                else
+                {
+                    Policy.premium += Policy.percantageCalculated(10);
+
+                }
+                Policy.Claims += driver.NumberOfClaims;
+
+                if (Policy.ages.Min() > 21 && Policy.ages.Min() < 26)
+                {
+                    Policy.premium += Policy.percantageCalculated(20);
+
+                }
+                else if (Policy.ages.Min() > 25 && Policy.ages.Min() < 76)
+                {
+                    Policy.premium -= Policy.percantageCalculated(10);
+                }
+
+                driver.checkClaimDates();
+
+            }
+            return Math.Round(Policy.premium, 2);
+        }//return end premium
     }
 }

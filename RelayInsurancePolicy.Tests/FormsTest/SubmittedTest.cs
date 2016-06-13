@@ -50,5 +50,13 @@ namespace RelayInsurancePolicy.Tests.FormsTest
             Boolean result = submit.DriversClaimDates();
             Assert.AreEqual(result, true);
         }
+        [TestMethod]
+        public void CalculatePremiumTest()
+        {
+            Policy.addDriver("", "Accountant", new DateTime(30 / 05 / 1990), 0);
+            Double result = 405;
+
+            Assert.AreEqual(submit.CalculatePremium(), result);
+        }
     }
 }

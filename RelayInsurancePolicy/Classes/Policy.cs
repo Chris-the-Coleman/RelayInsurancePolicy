@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 
 namespace RelayInsurancePolicy
@@ -55,6 +56,7 @@ namespace RelayInsurancePolicy
             drivers[driverNumber].NumberOfClaims = claims;
             ages.Remove(ages[driverNumber]);
             ages.Add(ageCalculator(age));
+            MessageBox.Show(Convert.ToString(ages.Count));
             drivers[driverNumber].claimDates.Clear();
         }//Changes driver details and clears claim list
 
@@ -79,36 +81,6 @@ namespace RelayInsurancePolicy
           
         }//calculate percentages
 
-        public static Double CalculatePremium(int minAge)
-        {
-            foreach (Driver driver in Policy.drivers)
-            {
-                if (driver.Occupation == "Accountant")
-                {
-                    Policy.premium -= Policy.percantageCalculated(10);
-
-                }
-                else
-                {
-                    Policy.premium += Policy.percantageCalculated(10);
-
-                }
-                Policy.Claims += driver.NumberOfClaims;
-
-                if (minAge > 21 && minAge < 26)
-                {
-                    Policy.premium += Policy.percantageCalculated(20);
-
-                }
-                else if (minAge > 25 && minAge < 76)
-                {
-                    Policy.premium -= Policy.percantageCalculated(10);
-                }
-
-                driver.checkClaimDates();
-               
-            }
-            return Math.Round(premium, 2);
-        }//return end premium
+      
     }
 }
