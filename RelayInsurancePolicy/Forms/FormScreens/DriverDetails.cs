@@ -161,7 +161,7 @@ namespace RelayInsurancePolicy
             }
         }//initialzing which claims are visible
        
-        private void claim(Boolean visible, Label label, DateTimePicker picker)
+        public void claim(Boolean visible, Label label, DateTimePicker picker)
         {
             if (visible)
             {

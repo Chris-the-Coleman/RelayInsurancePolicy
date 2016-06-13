@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace RelayInsurancePolicy
 {
-    static class Policy
+     class Policy
     {
         public static List<Driver> drivers = new List<Driver>();
         public static List<int> ages = new List<int>();
@@ -66,7 +66,7 @@ namespace RelayInsurancePolicy
             if(policyStart.Month < dob.Month)age--; 
             else if(policyStart.Month == dob.Month)
             {
-                if (policyStart.Day < dob.Day) age--;
+                if (policyStart.Day > dob.Day) age--;
                
             }
             return age;
@@ -76,6 +76,39 @@ namespace RelayInsurancePolicy
         {
             Double Premium = (premium / 100) * percentage;
             return Premium;
+          
         }//calculate percentages
+
+        public static Double CalculatePremium(int minAge)
+        {
+            foreach (Driver driver in Policy.drivers)
+            {
+                if (driver.Occupation == "Accountant")
+                {
+                    Policy.premium -= Policy.percantageCalculated(10);
+
+                }
+                else
+                {
+                    Policy.premium += Policy.percantageCalculated(10);
+
+                }
+                Policy.Claims += driver.NumberOfClaims;
+
+                if (minAge > 21 && minAge < 26)
+                {
+                    Policy.premium += Policy.percantageCalculated(20);
+
+                }
+                else if (minAge > 25 && minAge < 76)
+                {
+                    Policy.premium -= Policy.percantageCalculated(10);
+                }
+
+                driver.checkClaimDates();
+               
+            }
+            return Math.Round(premium, 2);
+        }//return end premium
     }
 }

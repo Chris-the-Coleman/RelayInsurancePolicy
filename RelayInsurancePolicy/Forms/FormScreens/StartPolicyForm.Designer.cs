@@ -110,6 +110,7 @@
             this.startPolicy_dateP.Name = "startPolicy_dateP";
             this.startPolicy_dateP.Size = new System.Drawing.Size(200, 20);
             this.startPolicy_dateP.TabIndex = 11;
+            this.startPolicy_dateP.Value = new System.DateTime(2016, 6, 12, 0, 0, 0, 0);
             // 
             // label3
             // 

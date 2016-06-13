@@ -14,8 +14,8 @@ namespace RelayInsurancePolicy
     {
         Boolean youngest = false;
         Boolean oldest = false;
-        Boolean claimDates = false;
-        Boolean policyClaimDates = false;
+        Boolean driversClaimDates = false;
+        Boolean claimsOnPolicy = false;
         public Submitted()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace RelayInsurancePolicy
 
 
             policyBox.AppendText("Your policy has been ");
-            CalculatePremium();
+            
             if(AcceptorDecline())
             {
                 policyBox.AppendText("Approved");
@@ -40,7 +40,7 @@ namespace RelayInsurancePolicy
                 policyBox.AppendText(" drivers shall cost:");
                 policyBox.AppendText("\n");
                 policyBox.AppendText("£");
-                Double premium = Math.Round(Policy.premium, 2);
+                Double premium = Policy.CalculatePremium(Policy.ages.Min());
                 policyBox.AppendText(Convert.ToString(premium)); 
             }
             else
@@ -53,48 +53,46 @@ namespace RelayInsurancePolicy
             }
         }
 
-        private void CalculatePremium()
-        {
-            foreach (Driver driver in Policy.drivers)
-            {
-                if (driver.Occupation == "Accountant")
-                {
-                    Policy.premium -= Policy.percantageCalculated(10);
-
-                }
-                else
-                {
-                    Policy.premium += Policy.percantageCalculated(10);
-
-                }
-                Policy.Claims += driver.NumberOfClaims;
-
-                if(Policy.ages.Min() > 21 && Policy.ages.Min() < 26)
-                {
-                    Policy.premium += Policy.percantageCalculated(20);
-
-                }
-                else if(Policy.ages.Min() > 25 && Policy.ages.Min() < 76)
-                {
-                    Policy.premium -= Policy.percantageCalculated(10);
-                }
-                
-                driver.checkClaimDates();
-            }
-        }//return end premium
+       
 
         private Boolean AcceptorDecline()
         {
-            if (Policy.ages.Min() < 21) youngest = true;
-            if (Policy.ages.Max() > 75) oldest = true;
-            if (Policy.Claims > 3) policyClaimDates = true;
-            foreach(Driver driver in Policy.drivers)
-            {
-                if (driver.NumberOfClaims > 2) claimDates = true;
-            }
+            youngest = Youngest();
+            oldest = Oldest();
+            claimsOnPolicy = ClaimsOnPolicy();
+            driversClaimDates = DriversClaimDates();
 
-            if (youngest || oldest || policyClaimDates || claimDates) return false;
+            if (youngest || oldest || claimsOnPolicy || driversClaimDates) return false;
             else return true;
+        }
+
+        public Boolean Youngest()
+        {
+            if (Policy.ages.Min() < 21) return true;
+            else return false;
+        }
+
+        public Boolean Oldest()
+        { if (Policy.ages.Max() > 75) return true;
+            else return false;
+        }
+
+        public Boolean ClaimsOnPolicy()
+        {
+            if (Policy.Claims > 3) return true;
+            else return false;
+        }
+
+        public Boolean DriversClaimDates()
+        {
+            Boolean result;
+            foreach (Driver driver in Policy.drivers)
+            {
+                if (driver.NumberOfClaims > 2) result = true;
+                else result = false;
+                return result;
+            }
+            return false;
         }
 
         private void declined()
@@ -109,12 +107,12 @@ namespace RelayInsurancePolicy
                 policyBox.AppendText("Age of oldest: " + Policy.drivers[Policy.ages.IndexOf(Policy.ages.Max())].DriverName);
                 policyBox.AppendText("\n");
             }
-            if(policyClaimDates)
+            if(claimsOnPolicy)
             {
                 policyBox.AppendText("Policy has more than 3 claims");
                 policyBox.AppendText("\n");
             }
-            if(claimDates)
+            if(driversClaimDates)
             {
                 foreach(Driver drive in Policy.drivers)
                 {

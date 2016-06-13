@@ -30,44 +30,44 @@ namespace RelayInsurancePolicy
             {
                 case 2:
                     DriversUpdate(driverTwo, 1, false, false);
-                    visibility(driverTwo, Amend2, Delete2);
+                    Visibilty(driverTwo, Amend2, Delete2); 
                     break;
                 case 3:
                     DriversUpdate(driverTwo, 1, false, false);
-                    visibility(driverTwo, Amend2, Delete2);
+                    Visibilty(driverTwo, Amend2, Delete2);
                     DriversUpdate(driverThree, 2, false, false);
-                    visibility(driverThree, Amend3, Delete3);
+                    Visibilty(driverThree, Amend3, Delete3);
                     break;
                 case 4:
                     DriversUpdate(driverTwo, 1, false, false);
-                    visibility(driverTwo, Amend2, Delete2);
+                    Visibilty(driverTwo, Amend2, Delete2);
                     DriversUpdate(driverThree, 2, false, false);
-                    visibility(driverThree, Amend3, Delete3);
+                    Visibilty(driverThree, Amend3, Delete3);
                     DriversUpdate(driverFour, 3, false, false);
-                    visibility(driverFour, Amend4, Delete4);
+                    Visibilty(driverFour, Amend4, Delete4);
                     break;
                 case 5:
                     DriversUpdate(driverTwo, 1, false, false);
-                    visibility(driverTwo, Amend2, Delete2);
+                    Visibilty(driverTwo, Amend2, Delete2);
                     DriversUpdate(driverThree, 2, false, false);
-                    visibility(driverThree, Amend3, Delete3);
+                    Visibilty(driverThree, Amend3, Delete3);
                     DriversUpdate(driverFour, 3, false, false);
-                    visibility(driverFour, Amend4, Delete4);
-                    visibility(driverFive, Amend5, Delete5);
+                    Visibilty(driverFour, Amend4, Delete4);
+                    Visibilty(driverFive, Amend5, Delete5);
                     DriversUpdate(driverFive, 4, false, false);
                     break;
             }
 
 
         }
-        private void visibility(TextBox text, Button one, Button two)
+        public void Visibilty(TextBox text, Button one, Button two)
         {
             text.Visible = true;
             one.Text = "Amend";
             two.Visible = true;
         }
 
-        private void invisibility(TextBox text, Button one, Button two)
+        public void Invisibilty(TextBox text, Button one, Button two)
         {
             text.Visible = false;
             one.Text = "Add Driver";
@@ -75,53 +75,47 @@ namespace RelayInsurancePolicy
         }
 
 
-        private void DriversUpdate(TextBox text, int driverNumber, Boolean clear, Boolean delete)
+        public void DriversUpdate(TextBox text, int driverNumber, Boolean clear, Boolean delete)
         {
             if (clear)
             {
                 text.Clear();
 
-                if (delete) {
+                if (delete)
+                {   
                     Policy.drivers.Remove(Policy.drivers[driverNumber]);
                     Policy.ages.Remove(Policy.ages[driverNumber]);
                 }
             }
 
-            try
+            text.AppendText("Driver ");
+            text.AppendText(Convert.ToString(driverNumber + 1));
+            text.AppendText("\n");
+            text.AppendText(Policy.drivers[driverNumber].DriverName);
+            text.AppendText("\n");
+            text.AppendText("Occupation: ");
+            text.AppendText(Policy.drivers[driverNumber].Occupation);
+            text.AppendText("\n");
+            text.AppendText("Age: ");
+            text.AppendText(Convert.ToString(Policy.drivers[driverNumber].DriverAge));
+            text.AppendText("\n");
+            text.AppendText("No. of claims: ");
+            text.AppendText(Convert.ToString(Policy.drivers[driverNumber].NumberOfClaims));
+            text.AppendText("\n");
+            text.AppendText("Claim dates: ");
+
+            foreach (DateTime claim in Policy.drivers[driverNumber].claimDates)
             {
-                text.AppendText("Driver ");
-                text.AppendText(Convert.ToString(driverNumber + 1));
-                text.AppendText("\n");
-                text.AppendText(Policy.drivers[driverNumber].DriverName);
-                text.AppendText("\n");
-                text.AppendText("Occupation: ");
-                text.AppendText(Policy.drivers[driverNumber].Occupation);
-                text.AppendText("\n");
-                text.AppendText("Age: ");
-                text.AppendText(Convert.ToString(Policy.drivers[driverNumber].DriverAge));
-                text.AppendText("\n");
-                text.AppendText("No. of claims: ");
-                text.AppendText(Convert.ToString(Policy.drivers[0].NumberOfClaims));
-                text.AppendText("\n");
-                text.AppendText("Claim dates: ");
 
-
-
-
-                foreach (DateTime claim in Policy.drivers[driverNumber].claimDates)
-                {
-
-                    text.AppendText(Convert.ToString(claim.Date.ToString("d")));
-                    text.AppendText("\n");
-                }
+                text.AppendText(Convert.ToString(claim.Date.ToString("d")));
+                text.AppendText("\n");
             }
-            catch { }
-        }
+        }    
+           
+        
 
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
+        
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -158,22 +152,22 @@ namespace RelayInsurancePolicy
                 {
                    
                     case 2:
-                        invisibility(driverTwo, Amend2, Delete2);
+                        Invisibilty(driverTwo, Amend2, Delete2);
                         DriversUpdate(driverOne, 0, true, true);
                         break;
                     case 3:
-                        invisibility(driverThree, Amend3, Delete3);
+                        Invisibilty(driverThree, Amend3, Delete3);
                         DriversUpdate(driverOne, 0, true, true);
                         DriversUpdate(driverTwo, 1, true, false);
                         break;
                     case 4:
-                        invisibility(driverFour, Amend4, Delete4);
+                        Invisibilty(driverFour, Amend4, Delete4);
                         DriversUpdate(driverOne, 0, true, true);
                         DriversUpdate(driverTwo, 1, true, false);
                         DriversUpdate(driverThree, 2, true, false);
                         break;
                     case 5:
-                        invisibility(driverFive, Amend5, Delete5);
+                        Invisibilty(driverFive, Amend5, Delete5);
                         DriversUpdate(driverOne, 0, true, true);
                         DriversUpdate(driverTwo, 1, true, false);
                         DriversUpdate(driverThree, 2, true, false);
@@ -211,7 +205,7 @@ namespace RelayInsurancePolicy
 
         private void Delete5_Click(object sender, EventArgs e)
         {
-            invisibility(driverFive, Amend5, Delete5);
+            Invisibilty(driverFive, Amend5, Delete5);
             DriversUpdate(driverFive, 4, true, true);
         }
 
@@ -219,12 +213,12 @@ namespace RelayInsurancePolicy
         {
             if (Policy.drivers.Count == 5)
             {
-                invisibility(driverFive, Amend5, Delete5);
+                Invisibilty(driverFive, Amend5, Delete5);
                 DriversUpdate(driverFour, 3, true, true);
             }
             else
             {
-                invisibility(driverFour, Amend4, Delete4);
+                Invisibilty(driverFour, Amend4, Delete4);
                 DriversUpdate(driverFour, 3, true, true);
             }
         }
@@ -234,15 +228,15 @@ namespace RelayInsurancePolicy
             switch (Policy.drivers.Count)
             {
                 case 3:
-                    invisibility(driverThree, Amend3, Delete3);
+                    Invisibilty(driverThree, Amend3, Delete3);
                     DriversUpdate(driverThree, 2, true, true);
                     break;
                 case 4:
-                    invisibility(driverFour, Amend4, Delete4);
+                    Invisibilty(driverFour, Amend4, Delete4);
                     DriversUpdate(driverThree, 2, true, true);
                     break;
                 case 5:
-                    invisibility(driverFive, Amend5, Delete5);
+                    Invisibilty(driverFive, Amend5, Delete5);
                     DriversUpdate(driverThree, 2, true, true);
                     DriversUpdate(driverFour, 3, true, false);
                     break;
@@ -254,20 +248,20 @@ namespace RelayInsurancePolicy
             switch (Policy.drivers.Count)
             {
                 case 2:
-                    invisibility(driverTwo, Amend2, Delete2);
+                    Invisibilty(driverTwo, Amend2, Delete2);
                     DriversUpdate(driverTwo, 1, true, true);
                     break;
                 case 3:
-                    invisibility(driverThree, Amend3, Delete3);
+                    Invisibilty(driverThree, Amend3, Delete3);
                     DriversUpdate(driverTwo, 1, true, true);
                     break;
                 case 4:
-                    invisibility(driverFour, Amend4, Delete4);
+                    Invisibilty(driverFour, Amend4, Delete4);
                     DriversUpdate(driverTwo, 1, true, true);
                     DriversUpdate(driverThree, 2, true, false);
                     break;
                 case 5:
-                    invisibility(driverFive, Amend5, Delete5);
+                    Invisibilty(driverFive, Amend5, Delete5);
                     DriversUpdate(driverTwo, 1, true, true);
                     DriversUpdate(driverThree, 2, true, false);
                     DriversUpdate(driverFour, 3, true, false);
